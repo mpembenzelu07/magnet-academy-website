@@ -4,61 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magnet Youth Sports Academy - Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="logo">
-            <h1>Magnet Academy</h1>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <h1>Magnet Youth Sports Academy</h1>
+                <p>MYSA / MYSO</p>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="programs.html">Programs</a></li>
-            <li><a href="achievements.html">Achievements</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
     </nav>
 
+    <!-- Hero Section -->
     <header class="hero">
-        <div class="hero-content">
-            <h1>Magnet Youth Sports Academy</h1>
-            <p>Developing Champions Through Discipline, Leadership & Teamwork</p>
-            <a href="about.html" class="btn">Learn More</a>
+        <div class="container">
+            <div class="hero-content">
+                <h2>Developing Champions Through Sports</h2>
+                <p>Training boys and girls aged 4-19 in Tanzania since 2014</p>
+                <a href="programs.html" class="btn-primary">Join Our Program</a>
+            </div>
         </div>
     </header>
 
-    <section class="highlights">
+    <!-- Quick Facts -->
+    <section class="facts">
         <div class="container">
-            <h2>Why Choose Magnet Academy?</h2>
-            <div class="highlight-cards">
-                <div class="card">
-                    <i class="fas fa-futbol"></i>
-                    <h3>Professional Training</h3>
-                    <p>Training boys and girls aged 4-19 with professional coaching methods</p>
+            <h2 class="section-title">Magnet Academy at a Glance</h2>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Founded</h3>
+                    <p>2014</p>
                 </div>
-                <div class="card">
-                    <i class="fas fa-globe-africa"></i>
-                    <h3>International Exposure</h3>
-                    <p>Competing in world-class tournaments like Gothia Cup and Iber Cup</p>
-                </div>
-                <div class="card">
+                <div class="fact-card">
                     <i class="fas fa-users"></i>
-                    <h3>Holistic Development</h3>
-                    <p>Focusing on discipline, leadership, and teamwork beyond just sports</p>
+                    <h3>Age Range</h3>
+                    <p>4 - 19 Years</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-futbol"></i>
+                    <h3>Senior Team</h3>
+                    <p>Tanzania 3rd League</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>International</h3>
+                    <p>Gothia Cup Semifinalists</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Core Values -->
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="values-list">
+                <div class="value-item">Discipline</div>
+                <div class="value-item">Leadership</div>
+                <div class="value-item">Teamwork</div>
+                <div class="value-item">Dedication</div>
+                <div class="value-item">Excellence</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>Magnet Youth Sports Academy &copy; 2024 | Tanzania</p>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h3>Magnet Youth Sports Academy</h3>
+                <p>Non-Profit Organization • Tanzania</p>
+                <p>Chairman: Tuntufye Mwambusi</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-phone"></i> +255 775 625 025</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Magnet Youth Sports Academy. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
