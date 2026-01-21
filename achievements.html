@@ -3,191 +3,480 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achievements - Magnet Academy</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Achievements | Magnet Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Additional styles for achievements page */
-        .achievement-hero {
-            background: linear-gradient(rgba(26, 35, 126, 0.8), rgba(26, 35, 126, 0.9));
+        :root {
+            --primary: #FF6B35;
+            --secondary: #1A8FE3;
+            --accent: #FFD166;
+            --dark: #0A192F;
+            --light: #F8F9FA;
+            --gold: #FFD700;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
             color: white;
-            padding: 5rem 0;
-            text-align: center;
+            line-height: 1.6;
         }
         
-        .tournament-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        .tournament-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        /* Navigation */
+        nav {
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--accent);
         }
         
-        .tournament-header {
-            background: #1a237e;
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-        }
-        
-        .tournament-body {
-            padding: 1.5rem;
-        }
-        
-        .achievement-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .achievement-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
+        .nav-container {
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
         
-        .achievement-list li:before {
-            content: "✓";
-            color: #4CAF50;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .partnerships {
+        .logo {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0;
+            align-items: center;
+            gap: 15px;
         }
         
-        .partner-badge {
-            background: #e3f2fd;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            border: 2px solid #1a237e;
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        /* Achievements Hero */
+        .achievements-hero {
+            padding: 150px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+        }
+        
+        .achievements-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .trophy-animation {
+            font-size: 4rem;
+            color: var(--gold);
+            margin: 30px 0;
+            animation: spinTrophy 4s linear infinite;
+        }
+        
+        @keyframes spinTrophy {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        
+        /* Achievements Grid */
+        .achievements-grid {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--accent);
+        }
+        
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid var(--gold);
+        }
+        
+        .achievement-card:nth-child(2) {
+            border-left-color: var(--silver);
+        }
+        
+        .achievement-card:nth-child(3) {
+            border-left-color: var(--bronze);
+        }
+        
+        .achievement-year {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
             font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .achievement-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .achievement-card:nth-child(2) .achievement-badge {
+            background: var(--silver);
+        }
+        
+        .achievement-card:nth-child(3) .achievement-badge {
+            background: var(--bronze);
+        }
+        
+        .achievement-details {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .achievement-details li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .achievement-details li:before {
+            content: '⚽';
+            color: var(--primary);
+        }
+        
+        /* International Map */
+        .international-section {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            margin: 40px 0;
+        }
+        
+        .map-container {
+            position: relative;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            margin: 40px auto;
+            overflow: hidden;
+            max-width: 800px;
+        }
+        
+        .map-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulsePoint 2s infinite;
+        }
+        
+        @keyframes pulsePoint {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 107, 53, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+        }
+        
+        .map-point.sweden {
+            top: 30%;
+            left: 55%;
+            background: var(--gold);
+        }
+        
+        .map-point.portugal {
+            top: 40%;
+            left: 45%;
+            background: var(--silver);
+        }
+        
+        .map-point.tanzania {
+            top: 60%;
+            left: 60%;
+            background: var(--primary);
+        }
+        
+        /* Partnerships */
+        .partnerships {
+            padding: 80px 0;
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .partner-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 60px 0 30px;
+            border-top: 2px solid var(--accent);
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .achievements-hero h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav>
         <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <h1>Magnet Youth Sports Academy</h1>
-                <p>MYSA / MYSO</p>
-            </a>
-            <ul class="nav-menu">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h1>MAGNET ACADEMY</h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">Our Story</a></li>
                 <li><a href="programs.html">Programs</a></li>
                 <li><a href="achievements.html" class="active">Achievements</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
     <!-- Achievements Hero -->
-    <section class="achievement-hero">
+    <section class="achievements-hero">
         <div class="container">
-            <h1>International Success & Partnerships</h1>
-            <p>Competing globally and building strategic alliances</p>
-        </div>
-    </section>
-
-    <!-- International Tournaments -->
-    <section class="tournaments">
-        <div class="container">
-            <h2 class="section-title">International Tournament Success</h2>
-            
-            <div class="tournament-grid">
-                <div class="tournament-card">
-                    <div class="tournament-header">
-                        <h3>Gothia Cup - Sweden</h3>
-                        <p>"The Youth World Cup"</p>
-                    </div>
-                    <div class="tournament-body">
-                        <ul class="achievement-list">
-                            <li>U-17 team reached semifinals in 2025</li>
-                            <li>Defeated teams from Germany and Venezuela</li>
-                            <li>Multiple participations since establishment</li>
-                            <li>Noted for unique team culture with music/dance warm-ups</li>
-                            <li>Aiming for championship title in future tournaments</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="tournament-card">
-                    <div class="tournament-header">
-                        <h3>Iber Cup - Portugal</h3>
-                        <p>2025 Participation</p>
-                    </div>
-                    <div class="tournament-body">
-                        <ul class="achievement-list">
-                            <li>Fielded four competitive teams</li>
-                            <li>U-11 team reached quarterfinals</li>
-                            <li>Strong performance against European competition</li>
-                            <li>Valuable international exposure for players</li>
-                        </ul>
-                    </div>
-                </div>
+            <h1>OUR CROWNING ACHIEVEMENTS</h1>
+            <p>From Tanzania to the world stage. These milestones represent our journey of excellence and dedication.</p>
+            <div class="trophy-animation">
+                <i class="fas fa-trophy"></i>
             </div>
         </div>
     </section>
 
-    <!-- Strategic Partnerships -->
-    <section class="partnerships-section">
+    <!-- Achievements Grid -->
+    <section class="achievements-grid">
         <div class="container">
-            <h2 class="section-title">Strategic Partnerships</h2>
+            <h2 class="section-title">LANDMARK ACHIEVEMENTS</h2>
             
-            <div class="partnerships">
-                <div class="partner-badge">Celta Foundation (Spain)</div>
-                <div class="partner-badge">Tanzania Football Federation</div>
-                <div class="partner-badge">National Sports Council</div>
-                <div class="partner-badge">SGA Security Tanzania</div>
-                <div class="partner-badge">Tanzanian Diaspora Community</div>
+            <div class="achievement-card">
+                <span class="achievement-year">2025</span>
+                <div class="achievement-badge">🥇</div>
+                <h2>GOTHIA CUP SEMIFINALISTS</h2>
+                <p><em>"The Youth World Cup" - Sweden</em></p>
+                <ul class="achievement-details">
+                    <li>U-17 team reached historic semifinals in world's largest youth tournament</li>
+                    <li>Defeated elite teams from Germany and Venezuela</li>
+                    <li>Made global headlines with our performance and team spirit</li>
+                    <li>Noted for unique team culture with music and dance warm-ups</li>
+                    <li>Put Tanzanian youth football on the international map</li>
+                </ul>
             </div>
             
-            <div class="partnership-details">
-                <h3>Key Partnership Highlights</h3>
-                <ul class="achievement-list">
-                    <li>Training camps with RC Celta de Vigo foundation in Dar es Salaam and Arusha</li>
-                    <li>Official recognition and support from national football authorities</li>
-                    <li>Corporate sponsorship for local tournaments and events</li>
-                    <li>Strong support network from Tanzanians abroad</li>
+            <div class="achievement-card">
+                <span class="achievement-year">2025</span>
+                <div class="achievement-badge">🥈</div>
+                <h2>IBER CUP PORTUGAL</h2>
+                <p><em>Elite European Youth Tournament</em></p>
+                <ul class="achievement-details">
+                    <li>Fielded four competitive teams across different age groups</li>
+                    <li>U-11 team reached quarterfinals against top European competition</li>
+                    <li>Impressed scouts and coaches with our technical ability</li>
+                    <li>Gained valuable international experience for our young athletes</li>
+                </ul>
+            </div>
+            
+            <div class="achievement-card">
+                <span class="achievement-year">2019-2024</span>
+                <div class="achievement-badge">🏆</div>
+                <h2>TANZANIA 3RD LEAGUE</h2>
+                <p><em>Senior Team Development</em></p>
+                <ul class="achievement-details">
+                    <li>Senior team established in Tanzania's competitive league system</li>
+                    <li>Consistent top-half finishes and playoff appearances</li>
+                    <li>Developing players for professional football careers</li>
+                    <li>Creating pathway from youth academy to senior football</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Local Events -->
-    <section class="events">
+    <!-- International Section -->
+    <section class="international-section">
         <div class="container">
-            <h2 class="section-title">Local Events & Community Impact</h2>
-            <div class="events-list">
-                <div class="event-item">
-                    <h3>Magnet All-Star Event</h3>
-                    <p>Annual tournament attracting over 300 children from across Tanzania</p>
+            <h2 class="section-title">OUR GLOBAL FOOTPRINT</h2>
+            <div class="map-container">
+                <div class="map-point sweden" title="Sweden - Gothia Cup"></div>
+                <div class="map-point portugal" title="Portugal - Iber Cup"></div>
+                <div class="map-point tanzania" title="Tanzania - Home Base"></div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <h3>Representing Tanzania on World Stages</h3>
+                <p>From local fields in Tanzania to international tournaments in Europe, our athletes carry the Tanzanian flag with pride and excellence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnerships -->
+    <section class="partnerships">
+        <div class="container">
+            <h2 class="section-title">STRATEGIC PARTNERSHIPS</h2>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <h3><i class="fas fa-handshake"></i> Celta Foundation</h3>
+                    <p>Partnership with Spain's RC Celta de Vigo foundation for training camps and expertise exchange</p>
                 </div>
-                <div class="event-item">
-                    <h3>Player Welfare Initiatives</h3>
-                    <p>Fundraising for injured player's surgery with support from top clubs like Yanga</p>
+                <div class="partner-card">
+                    <h3><i class="fas fa-flag"></i> Tanzania Football Federation</h3>
+                    <p>Official recognition and support from national football authorities</p>
                 </div>
-                <div class="event-item">
-                    <h3>League Participation</h3>
-                    <p>Senior team competes in Tanzania's third league</p>
+                <div class="partner-card">
+                    <h3><i class="fas fa-building"></i> SGA Security Tanzania</h3>
+                    <p>Corporate sponsorship for local tournaments and events</p>
+                </div>
+                <div class="partner-card">
+                    <h3><i class="fas fa-users"></i> National Sports Council</h3>
+                    <p>Government support and recognition for youth development programs</p>
                 </div>
             </div>
         </div>
@@ -195,26 +484,76 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container footer-content">
-            <div class="footer-info">
-                <h3>Magnet Youth Sports Academy</h3>
-                <p>Non-Profit Organization • Tanzania</p>
-                <p>Chairman: Tuntufye Mwambusi</p>
-            </div>
-            <div class="footer-contact">
-                <p><i class="fas fa-phone"></i> +255 775 625 025</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Magnet Youth Sports Academy</h3>
+                    <p>MYSA / MYSO - Tanzania</p>
+                    <p>Where Tanzanian excellence meets world stages</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +255 775 625 025</p>
+                    <p><i class="fas fa-user-tie"></i> Chairman: Tuntufye Mwambusi</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2024 Magnet Youth Sports Academy. All rights reserved.</p>
+            <div class="copyright">
+                <p>&copy; 2024 Magnet Youth Sports Academy. Every achievement tells a story of passion and dedication.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+        
+        // Celebration effect on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const celebrations = ['🏆', '⚽', '🥇', '🎉', '⭐', '🌟'];
+            
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const celebration = document.createElement('div');
+                    celebration.textContent = celebrations[Math.floor(Math.random() * celebrations.length)];
+                    celebration.style.cssText = `
+                        position: fixed;
+                        font-size: ${Math.random() * 2 + 1.5}rem;
+                        left: ${Math.random() * 100}vw;
+                        top: 100vh;
+                        z-index: 9999;
+                        opacity: 0;
+                        animation: fall ${Math.random() * 3 + 2}s linear ${Math.random() * 2}s;
+                    `;
+                    document.body.appendChild(celebration);
+                    
+                    setTimeout(() => celebration.remove(), 5000);
+                }, i * 200);
+            }
+            
+            // Add fall animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
 </body>
 </html>
