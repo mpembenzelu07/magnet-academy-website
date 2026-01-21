@@ -4,87 +4,217 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Achievements - Magnet Academy</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles for achievements page */
+        .achievement-hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.8), rgba(26, 35, 126, 0.9));
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .tournament-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .tournament-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tournament-header {
+            background: #1a237e;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .tournament-body {
+            padding: 1.5rem;
+        }
+        
+        .achievement-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .achievement-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .achievement-list li:before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .partnerships {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .partner-badge {
+            background: #e3f2fd;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            border: 2px solid #1a237e;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="logo">
-            <h1>Magnet Academy</h1>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <h1>Magnet Youth Sports Academy</h1>
+                <p>MYSA / MYSO</p>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="achievements.html" class="active">Achievements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="programs.html">Programs</a></li>
-            <li><a href="achievements.html" class="active">Achievements</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
     </nav>
 
-    <section class="achievements-hero">
-        <h1>Our Achievements & International Presence</h1>
+    <!-- Achievements Hero -->
+    <section class="achievement-hero">
+        <div class="container">
+            <h1>International Success & Partnerships</h1>
+            <p>Competing globally and building strategic alliances</p>
+        </div>
     </section>
 
-    <section class="achievements-content">
+    <!-- International Tournaments -->
+    <section class="tournaments">
         <div class="container">
-            <h2>International Tournament Success</h2>
+            <h2 class="section-title">International Tournament Success</h2>
             
-            <div class="achievement-card">
-                <h3>Gothia Cup - Sweden</h3>
-                <p class="subtitle">"The Youth World Cup"</p>
-                <ul>
-                    <li>U-17 team reached semifinals in 2025</li>
-                    <li>Defeated teams from Germany and Venezuela</li>
-                    <li>Multiple participations with aim for championship title</li>
-                    <li>Noted for unique team culture with music and dance warm-ups</li>
-                </ul>
+            <div class="tournament-grid">
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <h3>Gothia Cup - Sweden</h3>
+                        <p>"The Youth World Cup"</p>
+                    </div>
+                    <div class="tournament-body">
+                        <ul class="achievement-list">
+                            <li>U-17 team reached semifinals in 2025</li>
+                            <li>Defeated teams from Germany and Venezuela</li>
+                            <li>Multiple participations since establishment</li>
+                            <li>Noted for unique team culture with music/dance warm-ups</li>
+                            <li>Aiming for championship title in future tournaments</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <h3>Iber Cup - Portugal</h3>
+                        <p>2025 Participation</p>
+                    </div>
+                    <div class="tournament-body">
+                        <ul class="achievement-list">
+                            <li>Fielded four competitive teams</li>
+                            <li>U-11 team reached quarterfinals</li>
+                            <li>Strong performance against European competition</li>
+                            <li>Valuable international exposure for players</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            
-            <div class="achievement-card">
-                <h3>Iber Cup - Portugal</h3>
-                <p class="subtitle">2025 Participation</p>
-                <ul>
-                    <li>Fielded four competitive teams</li>
-                    <li>U-11 team reached quarterfinals</li>
-                </ul>
-            </div>
-            
-            <h2>Strategic Partnerships</h2>
+        </div>
+    </section>
+
+    <!-- Strategic Partnerships -->
+    <section class="partnerships-section">
+        <div class="container">
+            <h2 class="section-title">Strategic Partnerships</h2>
             
             <div class="partnerships">
-                <div class="partner-card">
-                    <h4><i class="fas fa-handshake"></i> Celta Foundation</h4>
-                    <p>Partnership with Spain's RC Celta de Vigo foundation to conduct training camps in Dar es Salaam and Arusha</p>
-                </div>
-                
-                <div class="partner-card">
-                    <h4><i class="fas fa-flag"></i> National Support</h4>
-                    <p>Backed by Tanzania Football Federation (TFF) and National Sports Council (NSC)</p>
-                </div>
-                
-                <div class="partner-card">
-                    <h4><i class="fas fa-building"></i> Corporate Sponsorship</h4>
-                    <p>Supported by companies like SGA Security Tanzania for local tournaments</p>
-                </div>
+                <div class="partner-badge">Celta Foundation (Spain)</div>
+                <div class="partner-badge">Tanzania Football Federation</div>
+                <div class="partner-badge">National Sports Council</div>
+                <div class="partner-badge">SGA Security Tanzania</div>
+                <div class="partner-badge">Tanzanian Diaspora Community</div>
             </div>
             
-            <h2>Local Events & Community Impact</h2>
-            <ul>
-                <li>Annual "Magnet All-Star Event" attracting over 300 children</li>
-                <li>Senior team competes in Tanzania's third league</li>
-                <li>Player welfare initiatives including fundraising for injured player's surgery</li>
-                <li>Strong support from Tanzanian diaspora community</li>
-            </ul>
+            <div class="partnership-details">
+                <h3>Key Partnership Highlights</h3>
+                <ul class="achievement-list">
+                    <li>Training camps with RC Celta de Vigo foundation in Dar es Salaam and Arusha</li>
+                    <li>Official recognition and support from national football authorities</li>
+                    <li>Corporate sponsorship for local tournaments and events</li>
+                    <li>Strong support network from Tanzanians abroad</li>
+                </ul>
+            </div>
         </div>
     </section>
 
+    <!-- Local Events -->
+    <section class="events">
+        <div class="container">
+            <h2 class="section-title">Local Events & Community Impact</h2>
+            <div class="events-list">
+                <div class="event-item">
+                    <h3>Magnet All-Star Event</h3>
+                    <p>Annual tournament attracting over 300 children from across Tanzania</p>
+                </div>
+                <div class="event-item">
+                    <h3>Player Welfare Initiatives</h3>
+                    <p>Fundraising for injured player's surgery with support from top clubs like Yanga</p>
+                </div>
+                <div class="event-item">
+                    <h3>League Participation</h3>
+                    <p>Senior team competes in Tanzania's third league</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>Magnet Youth Sports Academy &copy; 2024 | Tanzania</p>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h3>Magnet Youth Sports Academy</h3>
+                <p>Non-Profit Organization • Tanzania</p>
+                <p>Chairman: Tuntufye Mwambusi</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-phone"></i> +255 775 625 025</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Magnet Youth Sports Academy. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
