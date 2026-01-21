@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs | Magnet Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --secondary: #1A8FE3;
+            --accent: #FFD166;
+            --dark: #0A192F;
+            --light: #F8F9FA;
+            --success: #06D6A0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--success);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--success), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background: var(--success);
+            color: white;
+        }
+        
+        /* Programs Hero */
+        .programs-hero {
+            padding: 150px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(6, 214, 160, 0.1) 0%, transparent 70%);
+        }
+        
+        .programs-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--success);
+        }
+        
+        /* Age Groups */
+        .age-groups {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--accent);
+        }
+        
+        .age-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .age-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .age-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 5px;
+            background: var(--success);
+            transition: left 0.3s ease;
+        }
+        
+        .age-card:hover:before {
+            left: 0;
+        }
+        
+        .age-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(6, 214, 160, 0.2);
+        }
+        
+        .age-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--success), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+        }
+        
+        /* Training Programs */
+        .training-programs {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .program-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .program-card:hover {
+            background: rgba(6, 214, 160, 0.1);
+            transform: scale(1.02);
+        }
+        
+        .program-features {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .program-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .program-features li:before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* Team Structure */
+        .team-structure {
+            padding: 80px 0;
+        }
+        
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-level {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 60px 0 30px;
+            border-top: 2px solid var(--success);
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--success), var(--secondary));
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(6, 214, 160, 0.3);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .programs-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-running"></i>
+                </div>
+                <h1>MAGNET ACADEMY</h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="programs.html" class="active">Programs</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Programs Hero -->
+    <section class="programs-hero">
+        <div class="container">
+            <h1>OUR TRAINING PROGRAMS</h1>
+            <p>Structured development pathways for youth aged 4-19. Building skills, character, and champions.</p>
+        </div>
+    </section>
+
+    <!-- Age Groups -->
+    <section class="age-groups">
+        <div class="container">
+            <h2 class="section-title">AGE GROUP PROGRAMS</h2>
+            <div class="age-grid">
+                <div class="age-card">
+                    <div class="age-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>FOUNDATION STAGE</h3>
+                    <p class="age-range">Ages 4-6 Years</p>
+                    <p>Introduction to football through fun games and basic motor skills development. Focus on enjoyment and love for the sport.</p>
+                    <ul class="program-features">
+                        <li>Basic ball control</li>
+                        <li>Motor skills development</li>
+                        <li>Team play introduction</li>
+                        <li>Fun-based learning</li>
+                    </ul>
+                </div>
+                
+                <div class="age-card">
+                    <div class="age-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>DEVELOPMENT STAGE</h3>
+                    <p class="age-range">Ages 7-12 Years</p>
+                    <p>Technical skill development and introduction to tactical understanding. Building football fundamentals and teamwork.</p>
+                    <ul class="program-features">
+                        <li>Technical skill development</li>
+                        <li>Basic tactical understanding</li>
+                        <li>Small-sided games</li>
+                        <li>Physical literacy</li>
+                    </ul>
+                </div>
+                
+                <div class="age-card">
+                    <div class="age-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>PERFORMANCE STAGE</h3>
+                    <p class="age-range">Ages 13-19 Years</p>
+                    <p>Advanced training for competitive football. Focus on tactical awareness, physical conditioning, and mental preparation.</p>
+                    <ul class="program-features">
+                        <li>Advanced tactical training</li>
+                        <li>Physical conditioning</li>
+                        <li>Competitive match play</li>
+                        <li>Leadership development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Programs -->
+    <section class="training-programs">
+        <div class="container">
+            <h2 class="section-title">SPECIALIZED TRAINING PROGRAMS</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3><i class="fas fa-futbol"></i> TECHNICAL SKILLS PROGRAM</h3>
+                    <p>Master the fundamentals of football with focused technical training:</p>
+                    <ul class="program-features">
+                        <li>Ball control and dribbling mastery</li>
+                        <li>Passing accuracy and vision</li>
+                        <li>Shooting technique and power</li>
+                        <li>First touch development</li>
+                        <li>Position-specific skills</li>
+                    </ul>
+                </div>
+                
+                <div class="program-card">
+                    <h3><i class="fas fa-brain"></i> TACTICAL INTELLIGENCE PROGRAM</h3>
+                    <p>Develop game understanding and decision-making skills:</p>
+                    <ul class="program-features">
+                        <li>Positional awareness training</li>
+                        <li>Game strategy and systems</li>
+                        <li>Decision-making under pressure</li>
+                        <li>Set-piece specialization</li>
+                        <li>Match analysis sessions</li>
+                    </ul>
+                </div>
+                
+                <div class="program-card">
+                    <h3><i class="fas fa-heartbeat"></i> PHYSICAL DEVELOPMENT PROGRAM</h3>
+                    <p>Build athleticism and prevent injuries with scientific training:</p>
+                    <ul class="program-features">
+                        <li>Age-appropriate strength training</li>
+                        <li>Speed and agility development</li>
+                        <li>Endurance and stamina building</li>
+                        <li>Flexibility and mobility work</li>
+                        <li>Injury prevention programs</li>
+                    </ul>
+                </div>
+                
+                <div class="program-card">
+                    <h3><i class="fas fa-graduation-cap"></i> CHARACTER DEVELOPMENT PROGRAM</h3>
+                    <p>Build leadership and life skills beyond the football field:</p>
+                    <ul class="program-features">
+                        <li>Leadership and teamwork workshops</li>
+                        <li>Discipline and time management</li>
+                        <li>Academic support and tutoring</li>
+                        <li>Community service projects</li>
+                        <li>Career guidance sessions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Structure -->
+    <section class="team-structure">
+        <div class="container">
+            <h2 class="section-title">TEAM STRUCTURE & COMPETITIONS</h2>
+            <div class="structure-grid">
+                <div class="team-level">
+                    <h3><i class="fas fa-star"></i> YOUTH TEAMS</h3>
+                    <p>Multiple age-group teams from U-6 to U-19</p>
+                    <p>Local league competitions</p>
+                    <p>Development tournaments</p>
+                </div>
+                
+                <div class="team-level">
+                    <h3><i class="fas fa-flag"></i> ACADEMY TEAMS</h3>
+                    <p>Elite development squads</p>
+                    <p>Regional competitions</p>
+                    <p>Talent identification programs</p>
+                </div>
+                
+                <div class="team-level">
+                    <h3><i class="fas fa-trophy"></i> SENIOR TEAM</h3>
+                    <p>Tanzania 3rd League</p>
+                    <p>National cup competitions</p>
+                    <p>Pathway to professional football</p>
+                </div>
+                
+                <div class="team-level">
+                    <h3><i class="fas fa-globe"></i> INTERNATIONAL TEAMS</h3>
+                    <p>Gothia Cup (Sweden)</p>
+                    <p>Iber Cup (Portugal)</p>
+                    <p>Global youth tournaments</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="contact.html" class="cta-button">
+                    <i class="fas fa-calendar-check"></i> ENROLL NOW
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Magnet Youth Sports Academy</h3>
+                    <p>MYSA / MYSO - Tanzania</p>
+                    <p>Training tomorrow's champions today</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +255 775 625 025</p>
+                    <p><i class="fas fa-user-tie"></i> Chairman: Tuntufye Mwambusi</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Magnet Youth Sports Academy. Building champions through structured development.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+        
+        // Animate program cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.age-card, .program-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
