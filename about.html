@@ -3,111 +3,472 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Magnet Academy</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Our Story | Magnet Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --secondary: #1A8FE3;
+            --accent: #FFD166;
+            --dark: #0A192F;
+            --light: #F8F9FA;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* About Hero */
+        .about-hero {
+            padding: 150px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+        }
+        
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Mission Section */
+        .mission {
+            padding: 80px 0;
+        }
+        
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .mission-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--secondary);
+        }
+        
+        .mission-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 5px solid var(--primary);
+        }
+        
+        /* Leadership */
+        .leadership {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--accent);
+        }
+        
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .leader-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .leader-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+        }
+        
+        /* Values */
+        .values {
+            padding: 80px 0;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .value-item:hover {
+            background: rgba(255, 107, 53, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 60px 0 30px;
+            border-top: 2px solid var(--primary);
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .mission-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation (Same as index.html) -->
-    <nav class="navbar">
+    <!-- Navigation -->
+    <nav>
         <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <h1>Magnet Youth Sports Academy</h1>
-                <p>MYSA / MYSO</p>
-            </a>
-            <ul class="nav-menu">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-futbol"></i>
+                </div>
+                <h1>MAGNET ACADEMY</h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="about.html" class="active">Our Story</a></li>
                 <li><a href="programs.html">Programs</a></li>
                 <li><a href="achievements.html">Achievements</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
     <!-- About Hero -->
-    <section class="page-hero">
+    <section class="about-hero">
         <div class="container">
-            <h1>Our Story & Leadership</h1>
-            <p>Founded in 2014 with a vision for youth development</p>
+            <h1>OUR STORY OF IMPACT</h1>
+            <p class="hero-subtitle">From humble beginnings in 2014 to Tanzania's premier youth sports academy. Building champions, shaping character, and creating opportunities.</p>
         </div>
     </section>
 
-    <!-- About Content -->
-    <section class="about-content">
+    <!-- Mission Section -->
+    <section class="mission">
         <div class="container">
-            <div class="about-section">
-                <h2>Who We Are</h2>
-                <p>Magnet Youth Sports Academy (MYSA), also known as Magnet Youth Soccer Organization (MYSO), is a non-profit organization dedicated to providing equal opportunities for children and youth through sports in Tanzania.</p>
-                
-                <p>We train boys and girls from 4 to 19 years old, focusing not just on football skills but on developing well-rounded individuals through discipline, leadership, and teamwork.</p>
-            </div>
-
-            <div class="leadership-section">
-                <h2>Our Leadership</h2>
-                <div class="leadership-grid">
-                    <div class="leader-card">
-                        <div class="leader-icon">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <h3>Tuntufye Mwambusi</h3>
-                        <p class="leader-role">Chairman & Founder</p>
-                        <p>Visionary leader and founder of the academy since 2014</p>
-                    </div>
-                    <div class="leader-card">
-                        <div class="leader-icon">
-                            <i class="fas fa-clipboard-list"></i>
-                        </div>
-                        <h3>Wane Mkisi</h3>
-                        <p class="leader-role">Technical Director & Vice Chairman</p>
-                        <p>Oversees all training programs and technical development</p>
-                    </div>
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h2>Our Mission & Vision</h2>
+                    <p>Founded in 2014, Magnet Youth Sports Academy (MYSA), also known as Magnet Youth Soccer Organization (MYSO), began with a simple vision: to provide equal opportunities for Tanzanian youth through sports.</p>
+                    <p>What started as a small community initiative has grown into a nationally recognized non-profit organization that trains boys and girls from 4 to 19 years old, focusing not just on athletic excellence but on holistic personal development.</p>
                 </div>
-            </div>
-
-            <div class="team-section">
-                <h2>Our Teams</h2>
-                <div class="team-list">
-                    <div class="team-item">
-                        <h3>Youth Teams</h3>
-                        <p>Multiple age groups from 4-19 years old</p>
-                    </div>
-                    <div class="team-item">
-                        <h3>Senior Team</h3>
-                        <p>Competes in Tanzania's third league</p>
-                    </div>
+                <div class="mission-card">
+                    <h3><i class="fas fa-bullseye"></i> Our Core Mission</h3>
+                    <p>To develop well-rounded individuals through sports, emphasizing discipline, leadership, teamwork, and dedication while providing pathways to professional football and international competition.</p>
+                    <h3 style="margin-top: 30px;"><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>To become Africa's leading youth sports academy, recognized for producing not just exceptional athletes, but responsible citizens and future leaders.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer (Same as index.html) -->
+    <!-- Leadership -->
+    <section class="leadership">
+        <div class="container">
+            <h2 class="section-title">OUR LEADERSHIP</h2>
+            <div class="leaders-grid">
+                <div class="leader-card">
+                    <div class="leader-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>TUNTUFYE MWAMBUSI</h3>
+                    <p class="title">Chairman & Founder</p>
+                    <p>The visionary leader who transformed a local initiative into an internationally recognized academy. His passion for youth development drives our mission.</p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>WANE MKISI</h3>
+                    <p class="title">Technical Director & Vice Chairman</p>
+                    <p>Architect of our training methodology. His expertise shapes champions both on and off the field, ensuring holistic development of every athlete.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title">OUR CORE VALUES</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>DISCIPLINE</h3>
+                    <p>The foundation of all achievement, cultivated through consistent training and mental toughness.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3>LEADERSHIP</h3>
+                    <p>Building captains on and off the field who inspire and uplift their teammates and communities.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>TEAMWORK</h3>
+                    <p>Stronger together. We win as a family, support as a community, and grow as one team.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>DEDICATION</h3>
+                    <p>Passion turned into daily action. Commitment to excellence in all aspects of life and sport.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div class="container footer-content">
-            <div class="footer-info">
-                <h3>Magnet Youth Sports Academy</h3>
-                <p>Non-Profit Organization • Tanzania</p>
-                <p>Chairman: Tuntufye Mwambusi</p>
-            </div>
-            <div class="footer-contact">
-                <p><i class="fas fa-phone"></i> +255 775 625 025</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Magnet Youth Sports Academy</h3>
+                    <p>MYSA / MYSO - Tanzania</p>
+                    <p>Non-Profit Organization</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +255 775 625 025</p>
+                    <p><i class="fas fa-user-tie"></i> Chairman: Tuntufye Mwambusi</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2024 Magnet Youth Sports Academy. All rights reserved.</p>
+            <div class="copyright">
+                <p>&copy; 2024 Magnet Youth Sports Academy. Building Tanzania's future through sports.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+        
+        // Animate value items on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const valueItems = document.querySelectorAll('.value-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            valueItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(item);
+            });
+        });
+    </script>
 </body>
 </html>
