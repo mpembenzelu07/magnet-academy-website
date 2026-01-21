@@ -4,70 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Magnet Academy</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Navigation (Same as index.html) -->
     <nav class="navbar">
-        <div class="logo">
-            <h1>Magnet Academy</h1>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <h1>Magnet Youth Sports Academy</h1>
+                <p>MYSA / MYSO</p>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About</a></li>
-            <li><a href="programs.html">Programs</a></li>
-            <li><a href="achievements.html">Achievements</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
     </nav>
 
-    <section class="about-hero">
-        <h1>Our Story & Vision</h1>
+    <!-- About Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Story & Leadership</h1>
+            <p>Founded in 2014 with a vision for youth development</p>
+        </div>
     </section>
 
+    <!-- About Content -->
     <section class="about-content">
         <div class="container">
             <div class="about-section">
-                <h2>About Magnet Youth Sports Academy</h2>
-                <p>Founded in 2014, Magnet Youth Sports Academy (MYSA), also known as Magnet Youth Soccer Organization (MYSO), is a non-profit organization dedicated to providing equal opportunities for children and youth through sports.</p>
+                <h2>Who We Are</h2>
+                <p>Magnet Youth Sports Academy (MYSA), also known as Magnet Youth Soccer Organization (MYSO), is a non-profit organization dedicated to providing equal opportunities for children and youth through sports in Tanzania.</p>
                 
-                <h3>Our Mission</h3>
-                <p>To develop well-rounded individuals through sports, emphasizing discipline, leadership, teamwork, and dedication while providing pathways to professional football and international competition.</p>
-                
-                <h3>Leadership</h3>
-                <div class="leadership">
+                <p>We train boys and girls from 4 to 19 years old, focusing not just on football skills but on developing well-rounded individuals through discipline, leadership, and teamwork.</p>
+            </div>
+
+            <div class="leadership-section">
+                <h2>Our Leadership</h2>
+                <div class="leadership-grid">
                     <div class="leader-card">
-                        <h4>Tuntufye Mwambusi</h4>
-                        <p><strong>Chairman</strong></p>
-                        <p>Founder and visionary leader of the academy</p>
+                        <div class="leader-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Tuntufye Mwambusi</h3>
+                        <p class="leader-role">Chairman & Founder</p>
+                        <p>Visionary leader and founder of the academy since 2014</p>
                     </div>
                     <div class="leader-card">
-                        <h4>Wane Mkisi</h4>
-                        <p><strong>Technical Director & Vice Chairman</strong></p>
-                        <p>Oversees training programs and technical development</p>
+                        <div class="leader-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3>Wane Mkisi</h3>
+                        <p class="leader-role">Technical Director & Vice Chairman</p>
+                        <p>Oversees all training programs and technical development</p>
                     </div>
                 </div>
-                
-                <h3>Core Values</h3>
-                <div class="values">
-                    <span class="value-tag">Discipline</span>
-                    <span class="value-tag">Leadership</span>
-                    <span class="value-tag">Teamwork</span>
-                    <span class="value-tag">Dedication</span>
-                    <span class="value-tag">Excellence</span>
-                    <span class="value-tag">Community</span>
+            </div>
+
+            <div class="team-section">
+                <h2>Our Teams</h2>
+                <div class="team-list">
+                    <div class="team-item">
+                        <h3>Youth Teams</h3>
+                        <p>Multiple age groups from 4-19 years old</p>
+                    </div>
+                    <div class="team-item">
+                        <h3>Senior Team</h3>
+                        <p>Competes in Tanzania's third league</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer (Same as index.html) -->
     <footer>
-        <p>Magnet Youth Sports Academy &copy; 2024 | Tanzania</p>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h3>Magnet Youth Sports Academy</h3>
+                <p>Non-Profit Organization • Tanzania</p>
+                <p>Chairman: Tuntufye Mwambusi</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-phone"></i> +255 775 625 025</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Magnet Youth Sports Academy. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
