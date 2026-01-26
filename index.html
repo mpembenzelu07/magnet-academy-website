@@ -3,70 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magnet Academy | Home of Champions</title>
+    <title>Magnet Football Academy | World-Class Youth Development</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
+        /* === GLOBAL STYLES === */
         :root {
-            --primary: #FF6B35; /* Vibrant Orange */
-            --secondary: #1A8FE3; /* Bright Blue */
-            --accent: #FFD166; /* Sunny Yellow */
-            --dark: #0A192F; /* Navy Blue */
-            --light: #F8F9FA;
-            --success: #06D6A0; /* Mint Green */
+            --primary: #E63946; /* Vibrant Red - Energy, Passion */
+            --secondary: #1D3557; /* Navy Blue - Professionalism, Trust */
+            --accent: #F4A261; /* Orange - Youth, Energy */
+            --success: #2A9D8F; /* Teal - Growth, Success */
+            --light: #F1FAEE; /* Cream - Purity, Excellence */
+            --dark: #0A192F;
+            --gold: #FFD700;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Poppins', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
-            background-color: var(--dark);
-            color: white;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: var(--light);
             overflow-x: hidden;
-            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
         }
         
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
+        .section-padding {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 3.2rem;
+            color: var(--secondary);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
         .btn {
             display: inline-block;
-            padding: 15px 35px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 18px 42px;
+            background: linear-gradient(135deg, var(--primary), #FF6B6B);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), #2A3B5C);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            left: 0;
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(230, 57, 70, 0.4);
         }
         
-        /* Navigation */
-        nav {
-            background: rgba(10, 25, 47, 0.95);
-            backdrop-filter: blur(10px);
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), #F7B267);
+        }
+        
+        .btn-accent:before {
+            background: linear-gradient(135deg, var(--primary), #FF6B6B);
+        }
+        
+        /* === PRELOADER === */
+        #preloader {
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+        
+        .loader:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 8px solid transparent;
+            border-top-color: var(--primary);
+            border-bottom-color: var(--primary);
+            animation: spin 1.5s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* === NAVIGATION === */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(29, 53, 87, 0.98);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 20px 0;
-            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        nav.scrolled {
+            padding: 15px 0;
+            background: rgba(29, 53, 87, 0.98);
         }
         
         .nav-container {
@@ -79,31 +199,44 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            text-decoration: none;
         }
         
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        .logo-icon:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') center/60% no-repeat;
         }
         
-        .logo h1 {
+        .logo-text h1 {
+            color: white;
             font-size: 1.8rem;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
             font-weight: 800;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        .logo-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
         
         .nav-links {
@@ -116,143 +249,390 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
+            font-size: 1.05rem;
             padding: 10px 20px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
+            border-radius: 30px;
+            transition: var(--transition);
             position: relative;
         }
         
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
             background: var(--primary);
-            color: white;
+            transition: width 0.3s ease;
+            border-radius: 2px;
         }
         
-        /* Hero Section */
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 70%;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        
+        /* === HERO SECTION === */
         .hero {
             padding: 180px 0 100px;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(26, 143, 227, 0.1) 0%, transparent 50%);
+            background: linear-gradient(rgba(29, 53, 87, 0.9), rgba(29, 53, 87, 0.95)), 
+                        url('https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
             position: relative;
             overflow: hidden;
         }
         
         .hero-content {
-            text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--primary), var(--accent), var(--secondary));
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--accent), #FFD166);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: gradientShift 5s ease infinite;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: titleGlow 3s ease-in-out infinite alternate;
         }
         
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        @keyframes titleGlow {
+            0% { text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+            100% { text-shadow: 0 5px 25px rgba(244, 162, 97, 0.4); }
         }
         
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 40px;
             color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        /* Features Section */
-        .features {
-            padding: 100px 0;
-            background: rgba(255, 255, 255, 0.03);
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 60px;
-            color: var(--accent);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            background: rgba(255, 107, 53, 0.1);
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
-        }
-        
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 50%;
+        .hero-stats {
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2rem;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
         }
         
-        /* Stats Section */
-        .stats {
-            padding: 80px 0;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+        .hero-stat {
             text-align: center;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 180px;
+            transition: var(--transition);
         }
         
-        .stat-item {
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+        .hero-stat:hover {
+            transform: translateY(-10px);
+            background: rgba(230, 57, 70, 0.2);
+            border-color: var(--primary);
         }
         
         .stat-number {
             font-size: 3rem;
             font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 10px;
+            color: var(--accent);
+            display: block;
+            line-height: 1;
         }
         
-        /* Footer */
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 10px;
+        }
+        
+        /* === FEATURES SECTION === */
+        .features {
+            background: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+        
+        .feature-card:hover:before {
+            width: 100%;
+            opacity: 0.1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--secondary), #2A3B5C);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card p {
+            color: #666;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* === PARTNERS SECTION === */
+        .partners {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 80px 0;
+        }
+        
+        .partners-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 50px;
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .partner-logo {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .partner-logo:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 60px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        /* === CTA SECTION === */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--secondary), #0A192F);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* === FOOTER === */
         footer {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 60px 0 30px;
-            border-top: 2px solid var(--primary);
+            background: #0A192F;
+            color: white;
+            padding: 80px 0 30px;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .footer-info h4,
+        .footer-links h4,
+        .footer-contact h4 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-info h4:after,
+        .footer-links h4:after,
+        .footer-contact h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(230, 57, 70, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
         }
         
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         
         .social-link {
@@ -265,34 +645,40 @@
             justify-content: center;
             color: white;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .social-link:hover {
             background: var(--primary);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
         
-        .copyright {
+        .footer-bottom {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
         
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.8rem;
+            }
         }
         
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .section-padding {
+                padding: 80px 0;
             }
             
             .nav-links {
@@ -301,41 +687,118 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 80px);
-                background: var(--dark);
+                background: var(--secondary);
                 flex-direction: column;
                 align-items: center;
                 padding-top: 40px;
-                transition: left 0.3s ease;
+                transition: left 0.4s ease;
+                gap: 0;
             }
             
             .nav-links.active {
                 left: 0;
             }
             
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 20px;
+                font-size: 1.2rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 150px 0 80px;
+                background-attachment: scroll;
+            }
+            
             .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+            
+            .hero-stat {
+                min-width: 140px;
+                padding: 20px 15px;
+            }
+            
+            .stat-number {
                 font-size: 2.5rem;
+            }
+            
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                gap: 15px;
+            }
+            
+            .hero-stat {
+                min-width: calc(50% - 15px);
             }
         }
     </style>
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="container nav-container">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-futbol"></i>
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <h1>MAGNET <span>FOOTBALL</span></h1>
+                    <p>ACADEMY</p>
                 </div>
-                <h1>MAGNET ACADEMY</h1>
-            </div>
+            </a>
+            
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
+            
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">Our Story</a></li>
                 <li><a href="programs.html">Programs</a></li>
                 <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="vision.html">Vision</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
@@ -345,63 +808,106 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>WHERE TANZANIAN DREAMS TAKE FLIGHT</h1>
-                <p>Building champions through sports since 2014. We nurture talent, discipline, and character in youth aged 4-19, creating future leaders both on and off the field.</p>
-                <a href="programs.html" class="btn">Start Your Journey</a>
+                <h1>WORLD-CLASS FOOTBALL DEVELOPMENT</h1>
+                <p>Transforming young talent into professional athletes through elite training, character development, and international exposure since 2014.</p>
+                <div class="hero-buttons">
+                    <a href="programs.html" class="btn">Start Your Journey</a>
+                    <a href="contact.html" class="btn btn-accent" style="margin-left: 20px;">Book a Trial</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-number">4-19</span>
+                        <span class="stat-label">Age Range</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">300+</span>
+                        <span class="stat-label">Training Centers</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">National Players</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">10</span>
+                        <span class="stat-label">Years Excellence</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section class="features section-padding">
         <div class="container">
-            <h2 class="section-title">WHY CHOOSE MAGNET ACADEMY?</h2>
+            <div class="section-title">
+                <h2>WHY MAGNET ACADEMY?</h2>
+            </div>
+            
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-globe-africa"></i>
                     </div>
-                    <h3>World-Class Training</h3>
-                    <p>Professional coaching methods with international exposure and modern facilities</p>
+                    <h3>International Exposure</h3>
+                    <p>Competing in world-class tournaments like Gothia Cup (Sweden) and Iber Cup (Portugal) with teams reaching semifinals against European giants.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>Holistic Development</h3>
-                    <p>Focus on discipline, leadership, teamwork, and character building beyond sports</p>
+                    <h3>Professional Pathway</h3>
+                    <p>Direct pathway to Tanzania Premier League with our own First League team and 15+ players selected for national youth teams.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-globe"></i>
+                        <i class="fas fa-users"></i>
                     </div>
-                    <h3>Global Opportunities</h3>
-                    <p>Compete internationally in tournaments like Gothia Cup and Iber Cup</p>
+                    <h3>Expert CAF Licensed Coaches</h3>
+                    <p>Our coaching staff holds CAF F, C, B, and A licenses with training from European clubs like Celta Vigo, Everton, and Sevilla.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
+    <!-- Partners Section -->
+    <section class="partners">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">2014</div>
-                    <div>Year Founded</div>
+            <h3 class="partners-title">TRUSTED BY LEADING ORGANIZATIONS</h3>
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <!-- Celta Vigo Logo -->
+                    <div style="color: var(--secondary); font-weight: 800; font-size: 1.5rem;">CELTA VIGO</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">4-19</div>
-                    <div>Age Range</div>
+                <div class="partner-logo">
+                    <!-- Everton Logo -->
+                    <div style="color: var(--primary); font-weight: 800; font-size: 1.5rem;">EVERTON FC</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">15+</div>
-                    <div>Training Programs</div>
+                <div class="partner-logo">
+                    <!-- Tanzania FF Logo -->
+                    <div style="color: var(--secondary); font-weight: 800; font-size: 1.5rem;">TFF</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div>Youth Impacted</div>
+                <div class="partner-logo">
+                    <!-- CAF Logo -->
+                    <div style="color: #000; font-weight: 800; font-size: 1.5rem;">CAF</div>
                 </div>
+                <div class="partner-logo">
+                    <!-- Sevilla Logo -->
+                    <div style="color: #C10000; font-weight: 800; font-size: 1.5rem;">SEVILLA FC</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>READY TO BECOME A CHAMPION?</h2>
+                <p>Join Tanzania's premier football academy and begin your journey to professional football. Limited spots available for 2024 intake.</p>
+                <a href="contact.html" class="btn">Enroll Now</a>
             </div>
         </div>
     </section>
@@ -410,75 +916,141 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Magnet Youth Sports Academy</h3>
-                    <p>MYSA / MYSO - Tanzania</p>
-                    <p>Non-Profit Organization</p>
+                <div class="footer-logo">
+                    <h3>Magnet Football Academy</h3>
+                    <p>Tanzania's leading youth football development institution since 2014.</p>
+                    <p>MYSA / MYSO - Non-Profit Organization</p>
                 </div>
+                
+                <div class="footer-info">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> Our Philosophy</a></li>
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> Age Group Programs</a></li>
+                        <li><a href="achievements.html"><i class="fas fa-chevron-right"></i> International Success</a></li>
+                        <li><a href="vision.html"><i class="fas fa-chevron-right"></i> Future Goals</a></li>
+                    </ul>
+                </div>
+                
                 <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><i class="fas fa-phone"></i> +255 775 625 025</p>
-                    <p><i class="fas fa-user-tie"></i> Chairman: Tuntufye Mwambusi</p>
+                    <h4>Contact Info</h4>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <p>+255 775 625 025</p>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Mon-Sat, 8AM-6PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <p>Chairman: Tuntufye Mwambusi</p>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Founder & Visionary Leader</p>
+                        </div>
+                    </div>
+                    
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2024 Magnet Youth Sports Academy. All rights reserved.</p>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Magnet Football Academy. All Rights Reserved. | Developing Champions On and Off the Pitch</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+            
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+        
         // Mobile Menu Toggle
         document.getElementById('mobileMenuBtn').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
+            this.innerHTML = this.innerHTML.includes('bars') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
         });
         
-        // Close menu when clicking a link
+        // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
         
-        // Add confetti effect on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const colors = ['#FF6B35', '#1A8FE3', '#FFD166', '#06D6A0'];
-            
-            for(let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.style.cssText = `
-                        position: fixed;
-                        width: 10px;
-                        height: 10px;
-                        background: ${colors[Math.floor(Math.random() * colors.length)]};
-                        border-radius: 50%;
-                        top: -20px;
-                        left: ${Math.random() * 100}vw;
-                        opacity: 0;
-                        z-index: -1;
-                        animation: fall 3s linear ${Math.random() * 2}s;
-                    `;
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => confetti.remove(), 3000);
-                }, i * 100);
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
-            
-            // Add CSS animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fall {
-                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-                    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        });
+        
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const target = parseInt(statNumber.textContent);
+                    const isPercentage = statNumber.textContent.includes('%');
+                    
+                    if (!isNaN(target)) {
+                        let current = 0;
+                        const increment = target / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                            }
+                            statNumber.textContent = Math.floor(current) + (isPercentage ? '%' : '');
+                        }, 30);
+                    }
+                    
+                    observer.unobserve(entry.target);
                 }
-            `;
-            document.head.appendChild(style);
+            });
+        }, observerOptions);
+        
+        // Observe all stat elements
+        document.querySelectorAll('.hero-stat').forEach(stat => {
+            observer.observe(stat);
+        });
+        
+        // Feature card animation
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
         });
     </script>
 </body>
