@@ -3,48 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programs | Magnet Academy</title>
+    <title>Training Programs | Magnet Football Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF6B35;
-            --secondary: #1A8FE3;
-            --accent: #FFD166;
+            --primary: #E63946;
+            --secondary: #1D3557;
+            --accent: #F4A261;
+            --success: #2A9D8F;
+            --light: #F1FAEE;
             --dark: #0A192F;
-            --light: #F8F9FA;
-            --success: #06D6A0;
+            --gold: #FFD700;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
-            background-color: var(--dark);
-            color: white;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: var(--light);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
         }
         
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
-        /* Navigation */
-        nav {
-            background: rgba(10, 25, 47, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
+        .section-padding {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 3.2rem;
+            color: var(--secondary);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 18px 42px;
+            background: linear-gradient(135deg, var(--success), #2A9D8F);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
             top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), #2A3B5C);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            left: 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(42, 157, 143, 0.4);
+        }
+        
+        /* === NAVIGATION === */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(29, 53, 87, 0.98);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 20px 0;
-            border-bottom: 2px solid var(--success);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        nav.scrolled {
+            padding: 15px 0;
+            background: rgba(29, 53, 87, 0.98);
         }
         
         .nav-container {
@@ -57,25 +150,44 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            text-decoration: none;
         }
         
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--success), var(--accent));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .logo h1 {
+        .logo-icon:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') center/60% no-repeat;
+        }
+        
+        .logo-text h1 {
+            color: white;
             font-size: 1.8rem;
-            background: linear-gradient(45deg, var(--success), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
             font-weight: 800;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        .logo-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
         
         .nav-links {
@@ -88,121 +200,138 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
+            font-size: 1.05rem;
             padding: 10px 20px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
         }
         
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
             background: var(--success);
-            color: white;
+            transition: width 0.3s ease;
+            border-radius: 2px;
         }
         
-        /* Programs Hero */
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 70%;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        
+        /* === PROGRAMS HERO === */
         .programs-hero {
-            padding: 150px 0 80px;
+            padding: 180px 0 100px;
+            background: linear-gradient(rgba(29, 53, 87, 0.9), rgba(29, 53, 87, 0.95)), 
+                        url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
             text-align: center;
-            background: radial-gradient(circle at center, rgba(6, 214, 160, 0.1) 0%, transparent 70%);
         }
         
         .programs-hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 20px;
-            color: var(--success);
+            background: linear-gradient(135deg, var(--success), #4ECDC4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
-        /* Age Groups */
+        .programs-hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* === AGE GROUPS === */
         .age-groups {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: var(--accent);
+            background: white;
         }
         
         .age-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
         }
         
         .age-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: white;
             border-radius: 20px;
-            padding: 40px 30px;
+            padding: 50px 40px;
             text-align: center;
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
-        }
-        
-        .age-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 5px;
-            background: var(--success);
-            transition: left 0.3s ease;
-        }
-        
-        .age-card:hover:before {
-            left: 0;
+            border-top: 5px solid var(--success);
         }
         
         .age-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(6, 214, 160, 0.2);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         
         .age-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, var(--success), var(--secondary));
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--success), #4ECDC4);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
+            font-size: 2.8rem;
+            color: white;
+        }
+        
+        .age-range {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .age-card h3 {
             font-size: 2rem;
-        }
-        
-        /* Training Programs */
-        .training-programs {
-            padding: 80px 0;
-            background: rgba(255, 255, 255, 0.03);
-        }
-        
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-        
-        .program-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            transition: all 0.3s ease;
-        }
-        
-        .program-card:hover {
-            background: rgba(6, 214, 160, 0.1);
-            transform: scale(1.02);
+            color: var(--secondary);
+            margin-bottom: 20px;
         }
         
         .program-features {
             list-style: none;
-            margin-top: 20px;
+            margin-top: 25px;
+            text-align: left;
         }
         
         .program-features li {
             padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -212,45 +341,258 @@
             content: '✓';
             color: var(--success);
             font-weight: bold;
+            font-size: 1.2rem;
         }
         
-        /* Team Structure */
-        .team-structure {
-            padding: 80px 0;
+        /* === TRAINING PATHWAY === */
+        .pathway-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
         }
         
-        .structure-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        .pathway-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 0;
         }
         
-        .team-level {
-            background: rgba(255, 255, 255, 0.05);
+        .pathway-timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--success), var(--accent));
+            transform: translateX(-50%);
+        }
+        
+        .pathway-item {
+            display: flex;
+            margin-bottom: 60px;
+            position: relative;
+            width: 50%;
+        }
+        
+        .pathway-item:nth-child(odd) {
+            padding-right: 50px;
+            text-align: right;
+        }
+        
+        .pathway-item:nth-child(even) {
+            margin-left: 50%;
+            padding-left: 50px;
+        }
+        
+        .pathway-content {
+            background: white;
             padding: 30px;
             border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .pathway-item:nth-child(odd) .pathway-content:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--success);
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+        
+        .pathway-item:nth-child(even) .pathway-content:after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+        
+        .pathway-step {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .pathway-item:nth-child(even) .pathway-step {
+            background: var(--accent);
+        }
+        
+        /* === COACHING STAFF === */
+        .coaching-section {
+            background: white;
+        }
+        
+        .coaching-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .coach-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .coach-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .caf-badge {
+            display: inline-block;
+            background: #000;
+            color: #FFD700;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        /* === CTA SECTION === */
+        .programs-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--success), #2A9D8F);
+            color: white;
             text-align: center;
         }
         
-        /* Footer */
+        .programs-cta h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .programs-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-white {
+            background: white;
+            color: var(--success);
+        }
+        
+        .btn-white:before {
+            background: linear-gradient(135deg, var(--accent), #F4A261);
+        }
+        
+        .btn-white:hover {
+            color: white;
+        }
+        
+        /* === FOOTER === */
         footer {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 60px 0 30px;
-            border-top: 2px solid var(--success);
-            margin-top: 60px;
+            background: #0A192F;
+            color: white;
+            padding: 80px 0 30px;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--success), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .footer-info h4,
+        .footer-links h4,
+        .footer-contact h4 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-info h4:after,
+        .footer-links h4:after,
+        .footer-contact h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--success);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(42, 157, 143, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--success);
+            flex-shrink: 0;
         }
         
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         
         .social-link {
@@ -263,47 +605,47 @@
             justify-content: center;
             color: white;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
-        .copyright {
+        .social-link:hover {
+            background: var(--success);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
         
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--success), var(--secondary));
-            color: white;
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(6, 214, 160, 0.3);
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .pathway-timeline:before {
+                left: 30px;
+            }
+            
+            .pathway-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .pathway-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 70px;
+            }
+            
+            .pathway-item:nth-child(odd) {
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .pathway-item:nth-child(odd) .pathway-content:after {
+                left: -10px;
+                right: auto;
             }
             
             .nav-links {
@@ -312,41 +654,102 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 80px);
-                background: var(--dark);
+                background: var(--secondary);
                 flex-direction: column;
                 align-items: center;
                 padding-top: 40px;
-                transition: left 0.3s ease;
+                transition: left 0.4s ease;
+                gap: 0;
             }
             
             .nav-links.active {
                 left: 0;
             }
             
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 20px;
+                font-size: 1.2rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
             .programs-hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .programs-hero {
+                padding: 150px 0 80px;
+            }
+            
+            .programs-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .programs-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+            
+            .programs-cta h2 {
                 font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .programs-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .age-card {
+                padding: 40px 25px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="container nav-container">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-running"></i>
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <h1>MAGNET <span>FOOTBALL</span></h1>
+                    <p>ACADEMY</p>
                 </div>
-                <h1>MAGNET ACADEMY</h1>
-            </div>
+            </a>
+            
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
+            
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">Our Story</a></li>
                 <li><a href="programs.html" class="active">Programs</a></li>
                 <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="vision.html">Vision</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
@@ -355,28 +758,32 @@
     <!-- Programs Hero -->
     <section class="programs-hero">
         <div class="container">
-            <h1>OUR TRAINING PROGRAMS</h1>
-            <p>Structured development pathways for youth aged 4-19. Building skills, character, and champions.</p>
+            <h1>ELITE TRAINING PROGRAMS</h1>
+            <p>Structured development pathways for ages 4-19. Building technical excellence, tactical intelligence, and championship character.</p>
         </div>
     </section>
 
     <!-- Age Groups -->
-    <section class="age-groups">
+    <section class="age-groups section-padding">
         <div class="container">
-            <h2 class="section-title">AGE GROUP PROGRAMS</h2>
+            <div class="section-title">
+                <h2>AGE GROUP PROGRAMS</h2>
+            </div>
+            
             <div class="age-grid">
                 <div class="age-card">
                     <div class="age-icon">
                         <i class="fas fa-child"></i>
                     </div>
+                    <span class="age-range">AGES 4-6</span>
                     <h3>FOUNDATION STAGE</h3>
-                    <p class="age-range">Ages 4-6 Years</p>
-                    <p>Introduction to football through fun games and basic motor skills development. Focus on enjoyment and love for the sport.</p>
+                    <p>Introduction to football through fun games and basic motor skills development. Building love for the game.</p>
                     <ul class="program-features">
-                        <li>Basic ball control</li>
-                        <li>Motor skills development</li>
-                        <li>Team play introduction</li>
-                        <li>Fun-based learning</li>
+                        <li>Basic ball control & coordination</li>
+                        <li>Fundamental motor skills</li>
+                        <li>Introduction to team play</li>
+                        <li>Fun-based learning environment</li>
+                        <li>2 training sessions per week</li>
                     </ul>
                 </div>
                 
@@ -384,14 +791,15 @@
                     <div class="age-icon">
                         <i class="fas fa-users"></i>
                     </div>
+                    <span class="age-range">AGES 7-12</span>
                     <h3>DEVELOPMENT STAGE</h3>
-                    <p class="age-range">Ages 7-12 Years</p>
-                    <p>Technical skill development and introduction to tactical understanding. Building football fundamentals and teamwork.</p>
+                    <p>Technical skill mastery and introduction to tactical understanding. Building football fundamentals.</p>
                     <ul class="program-features">
                         <li>Technical skill development</li>
                         <li>Basic tactical understanding</li>
                         <li>Small-sided games</li>
-                        <li>Physical literacy</li>
+                        <li>Physical literacy & agility</li>
+                        <li>3 training sessions + weekend games</li>
                     </ul>
                 </div>
                 
@@ -399,115 +807,110 @@
                     <div class="age-icon">
                         <i class="fas fa-trophy"></i>
                     </div>
+                    <span class="age-range">AGES 13-19</span>
                     <h3>PERFORMANCE STAGE</h3>
-                    <p class="age-range">Ages 13-19 Years</p>
-                    <p>Advanced training for competitive football. Focus on tactical awareness, physical conditioning, and mental preparation.</p>
+                    <p>Advanced training for competitive football. Focus on tactical awareness and mental preparation.</p>
                     <ul class="program-features">
                         <li>Advanced tactical training</li>
+                        <li>Position-specific development</li>
                         <li>Physical conditioning</li>
-                        <li>Competitive match play</li>
                         <li>Leadership development</li>
+                        <li>4-5 sessions + competitive matches</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Training Programs -->
-    <section class="training-programs">
+    <!-- Training Pathway -->
+    <section class="pathway-section section-padding">
         <div class="container">
-            <h2 class="section-title">SPECIALIZED TRAINING PROGRAMS</h2>
-            <div class="programs-grid">
-                <div class="program-card">
-                    <h3><i class="fas fa-futbol"></i> TECHNICAL SKILLS PROGRAM</h3>
-                    <p>Master the fundamentals of football with focused technical training:</p>
-                    <ul class="program-features">
-                        <li>Ball control and dribbling mastery</li>
-                        <li>Passing accuracy and vision</li>
-                        <li>Shooting technique and power</li>
-                        <li>First touch development</li>
-                        <li>Position-specific skills</li>
-                    </ul>
-                </div>
-                
-                <div class="program-card">
-                    <h3><i class="fas fa-brain"></i> TACTICAL INTELLIGENCE PROGRAM</h3>
-                    <p>Develop game understanding and decision-making skills:</p>
-                    <ul class="program-features">
-                        <li>Positional awareness training</li>
-                        <li>Game strategy and systems</li>
-                        <li>Decision-making under pressure</li>
-                        <li>Set-piece specialization</li>
-                        <li>Match analysis sessions</li>
-                    </ul>
-                </div>
-                
-                <div class="program-card">
-                    <h3><i class="fas fa-heartbeat"></i> PHYSICAL DEVELOPMENT PROGRAM</h3>
-                    <p>Build athleticism and prevent injuries with scientific training:</p>
-                    <ul class="program-features">
-                        <li>Age-appropriate strength training</li>
-                        <li>Speed and agility development</li>
-                        <li>Endurance and stamina building</li>
-                        <li>Flexibility and mobility work</li>
-                        <li>Injury prevention programs</li>
-                    </ul>
-                </div>
-                
-                <div class="program-card">
-                    <h3><i class="fas fa-graduation-cap"></i> CHARACTER DEVELOPMENT PROGRAM</h3>
-                    <p>Build leadership and life skills beyond the football field:</p>
-                    <ul class="program-features">
-                        <li>Leadership and teamwork workshops</li>
-                        <li>Discipline and time management</li>
-                        <li>Academic support and tutoring</li>
-                        <li>Community service projects</li>
-                        <li>Career guidance sessions</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Structure -->
-    <section class="team-structure">
-        <div class="container">
-            <h2 class="section-title">TEAM STRUCTURE & COMPETITIONS</h2>
-            <div class="structure-grid">
-                <div class="team-level">
-                    <h3><i class="fas fa-star"></i> YOUTH TEAMS</h3>
-                    <p>Multiple age-group teams from U-6 to U-19</p>
-                    <p>Local league competitions</p>
-                    <p>Development tournaments</p>
-                </div>
-                
-                <div class="team-level">
-                    <h3><i class="fas fa-flag"></i> ACADEMY TEAMS</h3>
-                    <p>Elite development squads</p>
-                    <p>Regional competitions</p>
-                    <p>Talent identification programs</p>
-                </div>
-                
-                <div class="team-level">
-                    <h3><i class="fas fa-trophy"></i> SENIOR TEAM</h3>
-                    <p>Tanzania 3rd League</p>
-                    <p>National cup competitions</p>
-                    <p>Pathway to professional football</p>
-                </div>
-                
-                <div class="team-level">
-                    <h3><i class="fas fa-globe"></i> INTERNATIONAL TEAMS</h3>
-                    <p>Gothia Cup (Sweden)</p>
-                    <p>Iber Cup (Portugal)</p>
-                    <p>Global youth tournaments</p>
-                </div>
+            <div class="section-title">
+                <h2>PROFESSIONAL PATHWAY</h2>
+                <p style="max-width: 800px; margin: 20px auto 0; color: #666;">From grassroots to professional football - A clear development journey</p>
             </div>
             
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="contact.html" class="cta-button">
-                    <i class="fas fa-calendar-check"></i> ENROLL NOW
-                </a>
+            <div class="pathway-timeline">
+                <div class="pathway-item">
+                    <div class="pathway-content">
+                        <span class="pathway-step">STEP 1</span>
+                        <h3>YOUTH ACADEMY</h3>
+                        <p>Age 4-12: Foundational training in our 300+ centers nationwide. Focus on technical skills and love for the game.</p>
+                    </div>
+                </div>
+                
+                <div class="pathway-item">
+                    <div class="pathway-content">
+                        <span class="pathway-step">STEP 2</span>
+                        <h3>ELITE ACADEMY TEAMS</h3>
+                        <p>Age 13-16: Selection into elite squads. Advanced tactical training and regional competitions.</p>
+                    </div>
+                </div>
+                
+                <div class="pathway-item">
+                    <div class="pathway-content">
+                        <span class="pathway-step">STEP 3</span>
+                        <h3>INTERNATIONAL EXPOSURE</h3>
+                        <p>Age 16-19: Participation in Gothia Cup (Sweden), Iber Cup (Portugal), and other international tournaments.</p>
+                    </div>
+                </div>
+                
+                <div class="pathway-item">
+                    <div class="pathway-content">
+                        <span class="pathway-step">STEP 4</span>
+                        <h3>PROFESSIONAL PATHWAY</h3>
+                        <p>Path to Tanzania Premier League through our First League team. National team selections and overseas opportunities.</p>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Coaching Staff -->
+    <section class="coaching-section section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>EXPERT COACHING STAFF</h2>
+                <p style="max-width: 800px; margin: 20px auto 0; color: #666;">CAF Licensed coaches with international training experience</p>
+            </div>
+            
+            <div class="coaching-grid">
+                <div class="coach-card">
+                    <div class="caf-badge">CAF A LICENSE</div>
+                    <h3>Senior Technical Director</h3>
+                    <p>Oversees all technical programs and coach development. Trained in Spain with Celta Vigo and Sevilla FC.</p>
+                    <p style="margin-top: 15px; color: var(--success); font-weight: 600;">
+                        <i class="fas fa-user-graduate"></i> 15+ years experience
+                    </p>
+                </div>
+                
+                <div class="coach-card">
+                    <div class="caf-badge" style="background: #000; color: #FFD700;">CAF B LICENSE</div>
+                    <h3>Head of Youth Development</h3>
+                    <p>Specializes in age-appropriate training methodologies. Trained with Everton Youth Academy (England).</p>
+                    <p style="margin-top: 15px; color: var(--success); font-weight: 600;">
+                        <i class="fas fa-user-graduate"></i> 12+ years experience
+                    </p>
+                </div>
+                
+                <div class="coach-card">
+                    <div class="caf-badge">CAF C LICENSE</div>
+                    <h3>Technical Coaches</h3>
+                    <p>Specialized coaches for technical skills, tactics, and physical development. All certified through CAF programs.</p>
+                    <p style="margin-top: 15px; color: var(--success); font-weight: 600;">
+                        <i class="fas fa-user-graduate"></i> 50+ certified coaches
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="programs-cta">
+        <div class="container">
+            <h2>READY TO BEGIN YOUR JOURNEY?</h2>
+            <p>Join Tanzania's most successful football development program. Limited spots available for 2024 intake across all age groups.</p>
+            <a href="contact.html" class="btn btn-white">Book a Free Trial Session</a>
         </div>
     </section>
 
@@ -515,24 +918,55 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Magnet Youth Sports Academy</h3>
-                    <p>MYSA / MYSO - Tanzania</p>
-                    <p>Training tomorrow's champions today</p>
+                <div class="footer-logo">
+                    <h3>Magnet Football Academy</h3>
+                    <p>Tanzania's leading youth football development institution since 2014.</p>
+                    <p>MYSA / MYSO - Non-Profit Organization</p>
                 </div>
+                
+                <div class="footer-info">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> Our Philosophy</a></li>
+                        <li><a href="achievements.html"><i class="fas fa-chevron-right"></i> International Success</a></li>
+                        <li><a href="vision.html"><i class="fas fa-chevron-right"></i> Future Goals</a></li>
+                    </ul>
+                </div>
+                
                 <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><i class="fas fa-phone"></i> +255 775 625 025</p>
-                    <p><i class="fas fa-user-tie"></i> Chairman: Tuntufye Mwambusi</p>
+                    <h4>Contact Info</h4>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <p>+255 775 625 025</p>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Mon-Sat, 8AM-6PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <p>Chairman: Tuntufye Mwambusi</p>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Founder & Visionary Leader</p>
+                        </div>
+                    </div>
+                    
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2024 Magnet Youth Sports Academy. Building champions through structured development.</p>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Magnet Football Academy. All Rights Reserved. | Developing Champions On and Off the Pitch</p>
             </div>
         </div>
     </footer>
@@ -541,34 +975,62 @@
         // Mobile Menu Toggle
         document.getElementById('mobileMenuBtn').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
+            this.innerHTML = this.innerHTML.includes('bars') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
         });
         
-        // Close menu when clicking a link
+        // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
         
-        // Animate program cards on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.age-card, .program-card');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Animate age cards on scroll
+        const observerOptions = {
+            threshold: 0.2
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
+        }, observerOptions);
+        
+        // Observe all age cards
+        document.querySelectorAll('.age-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+        
+        // Animate pathway items on scroll
+        document.querySelectorAll('.pathway-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-50px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            
+            if (item.classList.contains('pathway-item') && item.nextElementSibling) {
+                item.nextElementSibling.style.transform = 'translateX(50px)';
+            }
+            
+            observer.observe(item);
         });
     </script>
 </body>
