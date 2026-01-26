@@ -3,47 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Story | Magnet Academy</title>
+    <title>Our Story | Magnet Football Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* === IMPORT GLOBAL STYLES === */
         :root {
-            --primary: #FF6B35;
-            --secondary: #1A8FE3;
-            --accent: #FFD166;
+            --primary: #E63946;
+            --secondary: #1D3557;
+            --accent: #F4A261;
+            --success: #2A9D8F;
+            --light: #F1FAEE;
             --dark: #0A192F;
-            --light: #F8F9FA;
+            --gold: #FFD700;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
-            background-color: var(--dark);
-            color: white;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: var(--light);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
         }
         
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
-        /* Navigation */
-        nav {
-            background: rgba(10, 25, 47, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
+        .section-padding {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 3.2rem;
+            color: var(--secondary);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 18px 42px;
+            background: linear-gradient(135deg, var(--primary), #FF6B6B);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
             top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), #2A3B5C);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            left: 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(230, 57, 70, 0.4);
+        }
+        
+        /* === NAVIGATION === */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(29, 53, 87, 0.98);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 20px 0;
-            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        nav.scrolled {
+            padding: 15px 0;
+            background: rgba(29, 53, 87, 0.98);
         }
         
         .nav-container {
@@ -56,25 +151,44 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            text-decoration: none;
         }
         
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .logo h1 {
+        .logo-icon:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') center/60% no-repeat;
+        }
+        
+        .logo-text h1 {
+            color: white;
             font-size: 1.8rem;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
             font-weight: 800;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        .logo-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
         
         .nav-links {
@@ -87,39 +201,75 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
+            font-size: 1.05rem;
             padding: 10px 20px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
         }
         
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
             background: var(--primary);
-            color: white;
+            transition: width 0.3s ease;
+            border-radius: 2px;
         }
         
-        /* About Hero */
-        .about-hero {
-            padding: 150px 0 80px;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 70%;
         }
         
-        .about-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--accent);
         }
         
-        .hero-subtitle {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            color: rgba(255, 255, 255, 0.8);
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
         }
         
-        /* Mission Section */
-        .mission {
-            padding: 80px 0;
+        /* === ABOUT HERO === */
+        .about-hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(rgba(29, 53, 87, 0.9), rgba(29, 53, 87, 0.95)), 
+                        url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent), #FFD166);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .about-hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* === MISSION SECTION === */
+        .mission-section {
+            background: white;
         }
         
         .mission-content {
@@ -130,110 +280,205 @@
         }
         
         .mission-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: 2.8rem;
             color: var(--secondary);
+            margin-bottom: 30px;
         }
         
         .mission-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
+            background: linear-gradient(135deg, var(--secondary), #0A192F);
+            color: white;
+            padding: 50px 40px;
             border-radius: 20px;
-            border-left: 5px solid var(--primary);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Leadership */
-        .leadership {
-            padding: 80px 0;
-            background: rgba(255, 255, 255, 0.03);
+        .mission-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.1) 0%, transparent 70%);
         }
         
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
+        .mission-card h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
             color: var(--accent);
+            position: relative;
+            z-index: 2;
         }
         
-        .leaders-grid {
+        .mission-card p {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 25px;
+        }
+        
+        /* === PHILOSOPHY SECTION === */
+        .philosophy-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+        
+        .philosophy-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
         
-        .leader-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .leader-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .leader-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2.5rem;
-        }
-        
-        /* Values */
-        .values {
-            padding: 80px 0;
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-        
-        .value-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
+        .philosophy-card {
+            background: white;
             border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             text-align: center;
-            transition: all 0.3s ease;
+            border-top: 5px solid var(--primary);
         }
         
-        .value-item:hover {
-            background: rgba(255, 107, 53, 0.1);
-            transform: scale(1.05);
+        .philosophy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         
-        .value-icon {
-            font-size: 2.5rem;
+        .philosophy-icon {
+            font-size: 3rem;
             color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .philosophy-card h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
             margin-bottom: 20px;
         }
         
-        /* Footer */
+        /* === VALUES SECTION === */
+        .values-section {
+            background: white;
+        }
+        
+        .values-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .value-item {
+            background: linear-gradient(135deg, var(--primary), #FF6B6B);
+            color: white;
+            padding: 20px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 3px solid transparent;
+        }
+        
+        .value-item:hover {
+            background: white;
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        /* === FOOTER === */
         footer {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 60px 0 30px;
-            border-top: 2px solid var(--primary);
-            margin-top: 60px;
+            background: #0A192F;
+            color: white;
+            padding: 80px 0 30px;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .footer-info h4,
+        .footer-links h4,
+        .footer-contact h4 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-info h4:after,
+        .footer-links h4:after,
+        .footer-contact h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(230, 57, 70, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
         }
         
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         
         .social-link {
@@ -246,29 +491,34 @@
             justify-content: center;
             color: white;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
-        .copyright {
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
         
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .mission-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.8rem;
             }
             
             .nav-links {
@@ -277,45 +527,95 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 80px);
-                background: var(--dark);
+                background: var(--secondary);
                 flex-direction: column;
                 align-items: center;
                 padding-top: 40px;
-                transition: left 0.3s ease;
+                transition: left 0.4s ease;
+                gap: 0;
             }
             
             .nav-links.active {
                 left: 0;
             }
             
-            .mission-content {
-                grid-template-columns: 1fr;
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 20px;
+                font-size: 1.2rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 150px 0 80px;
             }
             
             .about-hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+            }
+            
+            .about-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+            
+            .mission-text h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .value-item {
+                padding: 15px 25px;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="container nav-container">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-futbol"></i>
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <h1>MAGNET <span>FOOTBALL</span></h1>
+                    <p>ACADEMY</p>
                 </div>
-                <h1>MAGNET ACADEMY</h1>
-            </div>
+            </a>
+            
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
+            
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="active">Our Story</a></li>
                 <li><a href="programs.html">Programs</a></li>
                 <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="vision.html">Vision</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
@@ -324,88 +624,93 @@
     <!-- About Hero -->
     <section class="about-hero">
         <div class="container">
-            <h1>OUR STORY OF IMPACT</h1>
-            <p class="hero-subtitle">From humble beginnings in 2014 to Tanzania's premier youth sports academy. Building champions, shaping character, and creating opportunities.</p>
+            <h1>OUR STORY OF TRANSFORMATION</h1>
+            <p>From 12 centers to 300+, from local fields to international glory. Building Tanzania's football future since 2014.</p>
         </div>
     </section>
 
     <!-- Mission Section -->
-    <section class="mission">
+    <section class="mission-section section-padding">
         <div class="container">
             <div class="mission-content">
                 <div class="mission-text">
-                    <h2>Our Mission & Vision</h2>
-                    <p>Founded in 2014, Magnet Youth Sports Academy (MYSA), also known as Magnet Youth Soccer Organization (MYSO), began with a simple vision: to provide equal opportunities for Tanzanian youth through sports.</p>
-                    <p>What started as a small community initiative has grown into a nationally recognized non-profit organization that trains boys and girls from 4 to 19 years old, focusing not just on athletic excellence but on holistic personal development.</p>
+                    <h2>Leading Youth Development Through Football</h2>
+                    <p>Founded in 2014, Magnet Football Academy began with a revolutionary vision: to provide equal opportunity to all children and youth in Tanzania through sports. What started as 12 centers with a handful of passionate coaches has grown into Tanzania's largest and most successful youth football development institution.</p>
+                    <p>Our mission extends beyond creating skilled footballers. We focus on holistic personal and professional growth, building character, discipline, and leadership qualities that last a lifetime. We believe every child deserves the chance to discover their potential in a supportive, fun-filled environment.</p>
+                    <a href="programs.html" class="btn" style="margin-top: 30px;">Explore Our Programs</a>
                 </div>
+                
                 <div class="mission-card">
                     <h3><i class="fas fa-bullseye"></i> Our Core Mission</h3>
-                    <p>To develop well-rounded individuals through sports, emphasizing discipline, leadership, teamwork, and dedication while providing pathways to professional football and international competition.</p>
-                    <h3 style="margin-top: 30px;"><i class="fas fa-eye"></i> Our Vision</h3>
-                    <p>To become Africa's leading youth sports academy, recognized for producing not just exceptional athletes, but responsible citizens and future leaders.</p>
+                    <p>To build confidence and love for the game while creating a dynamic learning environment that motivates children and helps them reach their full potential both on and off the field.</p>
+                    
+                    <h3 style="margin-top: 40px;"><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>To be recognized as Africa's leading youth football program, developing not just exceptional athletes but responsible citizens and future leaders who represent Tanzania with pride on global stages.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Leadership -->
-    <section class="leadership">
+    <!-- Philosophy Section -->
+    <section class="philosophy-section section-padding">
         <div class="container">
-            <h2 class="section-title">OUR LEADERSHIP</h2>
-            <div class="leaders-grid">
-                <div class="leader-card">
-                    <div class="leader-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3>TUNTUFYE MWAMBUSI</h3>
-                    <p class="title">Chairman & Founder</p>
-                    <p>The visionary leader who transformed a local initiative into an internationally recognized academy. His passion for youth development drives our mission.</p>
-                </div>
-                <div class="leader-card">
-                    <div class="leader-icon">
-                        <i class="fas fa-clipboard-check"></i>
-                    </div>
-                    <h3>WANE MKISI</h3>
-                    <p class="title">Technical Director & Vice Chairman</p>
-                    <p>Architect of our training methodology. His expertise shapes champions both on and off the field, ensuring holistic development of every athlete.</p>
-                </div>
+            <div class="section-title">
+                <h2>OUR COACHING PHILOSOPHY</h2>
             </div>
-        </div>
-    </section>
-
-    <!-- Values -->
-    <section class="values">
-        <div class="container">
-            <h2 class="section-title">OUR CORE VALUES</h2>
-            <div class="values-grid">
-                <div class="value-item">
-                    <div class="value-icon">
-                        <i class="fas fa-shield-alt"></i>
+            
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-heart"></i>
                     </div>
-                    <h3>DISCIPLINE</h3>
-                    <p>The foundation of all achievement, cultivated through consistent training and mental toughness.</p>
+                    <h3>Passion First</h3>
+                    <p>We nurture intrinsic love for the game. Practice must be fun and entertaining, building confidence and enjoyment that lasts a lifetime.</p>
                 </div>
-                <div class="value-item">
-                    <div class="value-icon">
-                        <i class="fas fa-flag"></i>
-                    </div>
-                    <h3>LEADERSHIP</h3>
-                    <p>Building captains on and off the field who inspire and uplift their teammates and communities.</p>
-                </div>
-                <div class="value-item">
-                    <div class="value-icon">
+                
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>TEAMWORK</h3>
-                    <p>Stronger together. We win as a family, support as a community, and grow as one team.</p>
+                    <h3>Individual Development</h3>
+                    <p>We recognize skills develop at different rates. Our coaches look beyond technical abilities to understand each player's unique journey and potential.</p>
                 </div>
-                <div class="value-item">
-                    <div class="value-icon">
-                        <i class="fas fa-fire"></i>
+                
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-handshake"></i>
                     </div>
-                    <h3>DEDICATION</h3>
-                    <p>Passion turned into daily action. Commitment to excellence in all aspects of life and sport.</p>
+                    <h3>Team Chemistry</h3>
+                    <p>Building friendship and strong team bonds is fundamental. Team chemistry transforms talented individuals into championship teams.</p>
                 </div>
+                
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Winning With Values</h3>
+                    <p>While we compete to win, victory never comes at the expense of our core values. We pursue excellence with integrity and sportsmanship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>OUR CORE VALUES</h2>
+                <p style="max-width: 800px; margin: 20px auto 0; color: #666;">The fundamental beliefs that shape every interaction and decision at Magnet Academy</p>
+            </div>
+            
+            <div class="values-list">
+                <div class="value-item">DISCIPLINE</div>
+                <div class="value-item">LEADERSHIP</div>
+                <div class="value-item">TEAMWORK</div>
+                <div class="value-item">RESPECT</div>
+                <div class="value-item">DEDICATION</div>
+                <div class="value-item">EXCELLENCE</div>
+                <div class="value-item">INTEGRITY</div>
+                <div class="value-item">COMMUNITY</div>
             </div>
         </div>
     </section>
@@ -414,24 +719,55 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Magnet Youth Sports Academy</h3>
-                    <p>MYSA / MYSO - Tanzania</p>
-                    <p>Non-Profit Organization</p>
+                <div class="footer-logo">
+                    <h3>Magnet Football Academy</h3>
+                    <p>Tanzania's leading youth football development institution since 2014.</p>
+                    <p>MYSA / MYSO - Non-Profit Organization</p>
                 </div>
+                
+                <div class="footer-info">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> Age Group Programs</a></li>
+                        <li><a href="achievements.html"><i class="fas fa-chevron-right"></i> International Success</a></li>
+                        <li><a href="vision.html"><i class="fas fa-chevron-right"></i> Future Goals</a></li>
+                    </ul>
+                </div>
+                
                 <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><i class="fas fa-phone"></i> +255 775 625 025</p>
-                    <p><i class="fas fa-user-tie"></i> Chairman: Tuntufye Mwambusi</p>
+                    <h4>Contact Info</h4>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <p>+255 775 625 025</p>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Mon-Sat, 8AM-6PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <p>Chairman: Tuntufye Mwambusi</p>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Founder & Visionary Leader</p>
+                        </div>
+                    </div>
+                    
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2024 Magnet Youth Sports Academy. Building Tanzania's future through sports.</p>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Magnet Football Academy. All Rights Reserved. | Developing Champions On and Off the Pitch</p>
             </div>
         </div>
     </footer>
@@ -440,34 +776,60 @@
         // Mobile Menu Toggle
         document.getElementById('mobileMenuBtn').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
+            this.innerHTML = this.innerHTML.includes('bars') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
         });
         
-        // Close menu when clicking a link
+        // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
         
-        // Animate value items on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const valueItems = document.querySelectorAll('.value-item');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            valueItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(item);
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Animate value items on hover
+        document.querySelectorAll('.value-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
             });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Animate philosophy cards on scroll
+        const observerOptions = {
+            threshold: 0.2
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all philosophy cards
+        document.querySelectorAll('.philosophy-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
         });
     </script>
 </body>
